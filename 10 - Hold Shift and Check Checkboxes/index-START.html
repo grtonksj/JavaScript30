@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Hold Shift to Check Multiple Checkboxes</title>
+  <title>Hold Shift to Check Multiple chkboxes</title>
 </head>
 <body>
   <style>
@@ -53,7 +53,7 @@
    <!--
    The following is a common layout you would see in an email client.
 
-   When a user clicks a checkbox, holds Shift, and then clicks another checkbox a few rows down, all the checkboxes inbetween those two checkboxes should be checked.
+   When a user clicks a chkbox, holds Shift, and then clicks another chkbox a few rows down, all the chkboxes flag those two chkboxes should be checked.
 
   -->
   <div class="inbox">
@@ -96,6 +96,33 @@
   </div>
 
 <script>
+  let chkboxes = document.querySelectorAll("input");
+
+  let lastChked = null;
+
+  chkboxes.forEach(
+    chkbox =>{
+      chkbox.addEventListener("click",multiCheck);
+  })
+
+  function multiCheck(e){
+    let flag = false;
+    if (e.shiftKey && this.checked) {
+      // eventListner 내 this = e.currentTarget
+      chkboxes.forEach(chkbox => {
+        if (chkbox === this || chkbox === lastChked) {
+          flag = !flag;        
+        }
+        if (flag) {
+          chkbox.checked = true;
+        }
+      });
+  }
+
+  lastChked = this;
+}
+
+
 </script>
 </body>
 </html>
