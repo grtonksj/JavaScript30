@@ -7,6 +7,24 @@
 </head>
 <body>
 <script>
+  const pressed = [];
+  const answer = 'abc';
+
+// window.addEventListener('keyup', (e) => {
+//   pressed.push(e.key);
+//   pressed.splice(-answer.length - 1, pressed.length - answer.length);
+//   if (pressed.join('').includes(answer)) {
+//     cornify_add();
+//   }
+// });
+
+window.addEventListener('keyup', (e) => { 
+  answer[pressed.length] === e.key ? pressed.push(e.key) : pressed.length = 0;
+  if (pressed.join('') === answer) {
+    cornify_add()
+    pressed.length = 0
+  }
+})
 </script>
 </body>
 </html>
