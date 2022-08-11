@@ -43,6 +43,16 @@
   </div>
 
   <script>
+    const imgs = document.querySelectorAll('img');
+
+    function checkSlide(){
+      imgs.forEach(img => {
+        const isHalfShown = (window.scrollY + window.innerHeight) - img.height / 2 > img.offsetTop;
+        const isNotScrolledPast = window.scrollY < img.offsetTop + img.height;
+        (isHalfShown && isNotScrolledPast) ? img.classList.add('active') : img.classList.remove('active');
+      })
+    }
+
     function debounce(func, wait = 20, immediate = true) {
       var timeout;
       return function() {
@@ -57,6 +67,8 @@
         if (callNow) func.apply(context, args);
       };
     }
+
+    window.addEventListener('scroll',debounce(checkSlide));
 
   </script>
 
