@@ -54,7 +54,18 @@
   </div>
 
 <script>
+  const $nav = document.querySelector('#main');
+  const height = $nav.offsetTop;
 
+  function fixNav(){
+    if(window.scrollY > height){
+      $nav.classList.add('fixed-nav');
+    } 
+    else {
+      $nav.classList.remove('fixed-nav');
+    }
+  }
+  window.addEventListener('scroll', fixNav);
 </script>
 
 </body>
